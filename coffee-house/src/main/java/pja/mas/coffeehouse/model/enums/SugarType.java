@@ -4,5 +4,6 @@ public enum SugarType {
     WHITE,
     BROWN,
     CASTER,
-    CANE
+    CANE,
+    NO
 }

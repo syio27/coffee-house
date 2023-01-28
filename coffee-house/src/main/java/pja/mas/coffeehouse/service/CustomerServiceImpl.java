@@ -8,7 +8,6 @@ import pja.mas.coffeehouse.dto.CustomerResponse;
 import pja.mas.coffeehouse.exception.CustomerNotFoundException;
 import pja.mas.coffeehouse.model.users.Customer;
 import pja.mas.coffeehouse.repository.CustomerRepository;
-
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
@@ -29,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public CustomerResponse getCustomerById(Long id) {
-        log.info("User are retrieved {} ", id);
+        log.info("Customer is retrieved {} ", id);
         return customerRepository.findById(id)
                 .map(this::mapToCustomerResponse)
                 .orElseThrow(() -> new CustomerNotFoundException(id));
@@ -48,7 +47,7 @@ public class CustomerServiceImpl implements CustomerService{
                 .paymentMethod(customerRequest.getPaymentMethod())
                 .build();
 
-        log.info("Customer {}'s info is saved ", customer.getId());
+        log.info("Customer {}'s details is saved ", customer.getId());
         customerRepository.save(customer);
     }
 

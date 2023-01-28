@@ -73,36 +73,36 @@ public class DataLoader implements CommandLineRunner {
                 .price(9.99D)
                 .size(Size.LARGE)
                 .onStock(true)
-                .sugarType(SugarType.WHITE)
+                .sugarType(SugarType.NO)
                 .milkType(MilkType.REGULAR)
                 .build();
         Coffee coffee2 = Coffee.builder()
                 .price(12.99D)
                 .size(Size.MEDIUM)
                 .onStock(true)
-                .sugarType(SugarType.CANE)
+                .sugarType(SugarType.NO)
                 .milkType(MilkType.REGULAR)
                 .build();
         Coffee coffee3 = Coffee.builder()
                 .price(5.99D)
                 .size(Size.SMALL)
                 .onStock(true)
-                .sugarType(SugarType.BROWN)
-                .milkType(MilkType.NO)
+                .sugarType(SugarType.NO)
+                .milkType(MilkType.REGULAR)
                 .build();
         Coffee coffee4 = Coffee.builder()
                 .price(18.99D)
                 .size(Size.LARGE)
                 .onStock(true)
-                .sugarType(SugarType.CASTER)
+                .sugarType(SugarType.NO)
                 .milkType(MilkType.REGULAR)
                 .build();
         Coffee coffee5 = Coffee.builder()
                 .price(3.99D)
                 .size(Size.SMALL)
                 .onStock(true)
-                .sugarType(SugarType.WHITE)
-                .milkType(MilkType.SOYMILK)
+                .sugarType(SugarType.NO)
+                .milkType(MilkType.REGULAR)
                 .build();
 
         coffeeRepository.saveAll(List.of(coffee1, coffee2, coffee3, coffee4, coffee5));
