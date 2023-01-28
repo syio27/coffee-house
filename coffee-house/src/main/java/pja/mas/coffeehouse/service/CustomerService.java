@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface CustomerService {
     public List<CustomerResponse> getCustomers();
-    public Optional<CustomerResponse> getCustomer();
+    public CustomerResponse getCustomerById(Long id);
     public void save(CustomerRequest customerRequest);
     public void delete(Long id);
     public void update(Long id, CustomerRequest customerRequest);
