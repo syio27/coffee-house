@@ -62,6 +62,7 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public void update(Long id, CustomerRequest customerRequest) {
         Customer customer = Customer.builder()
+                .id(id)
                 .firstName(customerRequest.getFirstName())
                 .lastName(customerRequest.getLastName())
                 .birthDate(customerRequest.getBirthDate())
