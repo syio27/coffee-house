@@ -21,6 +21,15 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
+    @PostMapping()
+    public ResponseEntity<?> register(@RequestBody CustomerRequest customerRequest, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+        customerService.save(customerRequest);
+        return new ResponseEntity<>(customerRequest, HttpStatus.CREATED);
+    }
+
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public List<CustomerResponse> getCustomers(){
@@ -44,4 +53,6 @@ public class CustomerController {
         log.info("Customer {} is updated {}", id, customerRequest);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    
 }
