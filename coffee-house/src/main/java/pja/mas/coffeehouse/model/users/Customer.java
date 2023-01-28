@@ -1,4 +1,4 @@
-package pja.mas.coffeehouse.model;
+package pja.mas.coffeehouse.model.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

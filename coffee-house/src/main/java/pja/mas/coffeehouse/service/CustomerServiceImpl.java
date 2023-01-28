@@ -6,13 +6,12 @@ import org.springframework.stereotype.Service;
 import pja.mas.coffeehouse.dto.CustomerRequest;
 import pja.mas.coffeehouse.dto.CustomerResponse;
 import pja.mas.coffeehouse.exception.CustomerNotFoundException;
-import pja.mas.coffeehouse.model.Customer;
+import pja.mas.coffeehouse.model.users.Customer;
 import pja.mas.coffeehouse.repository.CustomerRepository;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
