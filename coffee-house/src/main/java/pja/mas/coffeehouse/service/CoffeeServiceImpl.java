@@ -3,11 +3,11 @@ package pja.mas.coffeehouse.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import pja.mas.coffeehouse.dto.CoffeeAndTypeResponse;
-import pja.mas.coffeehouse.dto.CoffeeRequest;
-import pja.mas.coffeehouse.dto.CoffeeResponse;
-import pja.mas.coffeehouse.dto.CoffeeUpdateRequest;
-import pja.mas.coffeehouse.exception.CoffeeNotFoundException;
+import pja.mas.coffeehouse.dto.coffeerelated.CoffeeAndTypeResponse;
+import pja.mas.coffeehouse.dto.coffeerelated.CoffeeRequest;
+import pja.mas.coffeehouse.dto.coffeerelated.CoffeeResponse;
+import pja.mas.coffeehouse.dto.coffeerelated.CoffeeUpdateRequest;
+import pja.mas.coffeehouse.exception.ProductNotFoundException;
 import pja.mas.coffeehouse.model.enums.MilkType;
 import pja.mas.coffeehouse.model.enums.SugarType;
 import pja.mas.coffeehouse.model.products.Coffee;
@@ -24,7 +24,7 @@ public class CoffeeServiceImpl implements CoffeeService{
     @Override
     public List<CoffeeResponse> getCoffees() {
         List<Coffee> coffees = coffeeRepository.findAll();
-        log.info("Customers are retrieved {} ", coffees);
+        log.info("Coffees are retrieved {} ", coffees);
         return coffees.stream().map(this::mapToCoffeeResponse).toList();
     }
 
@@ -33,7 +33,7 @@ public class CoffeeServiceImpl implements CoffeeService{
         log.info("Coffee is retrieved {} ", id);
         return coffeeRepository.findById(id)
                 .map(this::mapToCoffeeResponse)
-                .orElseThrow(() -> new CoffeeNotFoundException(id));
+                .orElseThrow(() -> new ProductNotFoundException(id));
     }
 
     @Override
@@ -62,7 +62,7 @@ public class CoffeeServiceImpl implements CoffeeService{
                 .id(id)
                 .price(coffeeUpdateRequest.getPrice())
                 .onStock(coffeeUpdateRequest.isOnStock())
-                .size(null)
+                .size(coffeeUpdateRequest.getSize())
                 .milkType(coffeeUpdateRequest.getMilkType())
                 .sugarType(coffeeUpdateRequest.getSugarType())
                 .build();
@@ -73,14 +73,14 @@ public class CoffeeServiceImpl implements CoffeeService{
     @Override
     public List<CoffeeAndTypeResponse> getCoffeesWithTypes() {
         List<Coffee> coffees = coffeeRepository.findCoffeeAndType();
-        log.info("Customers are retrieved {} ", coffees);
+        log.info("Coffees with types are retrieved {} ", coffees);
         return coffees.stream().map(this::mapToCoffeeAndTypeResponse).toList();
     }
 
     private Coffee findById(Long id){
         return coffeeRepository
                 .findById(id)
-                .orElseThrow(() -> new CoffeeNotFoundException(id));
+                .orElseThrow(() -> new ProductNotFoundException(id));
     }
 
     private CoffeeResponse mapToCoffeeResponse(Coffee coffee) {

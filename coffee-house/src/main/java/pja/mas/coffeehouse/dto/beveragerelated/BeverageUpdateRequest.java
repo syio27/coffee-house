@@ -1,4 +1,4 @@
-package pja.mas.coffeehouse.dto;
+package pja.mas.coffeehouse.dto.beveragerelated;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,11 +12,8 @@ import pja.mas.coffeehouse.model.enums.SugarType;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CoffeeAndTypeResponse {
-    private Long id;
-    private String name;
+public class BeverageUpdateRequest {
     private Double price;
-    private MilkType milkType;
-    private SugarType sugarType;
+    private boolean onStock;
     private Size size;
 }

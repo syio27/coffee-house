@@ -1,4 +1,4 @@
-package pja.mas.coffeehouse.dto;
+package pja.mas.coffeehouse.dto.customerrelated;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,14 +13,11 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerResponse {
-    private Long id;
+public class CustomerRequest {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
-    private int age;
     private Sex sex;
     private String address;
-    private Double wallet;
     private PaymentMethod paymentMethod;
 }

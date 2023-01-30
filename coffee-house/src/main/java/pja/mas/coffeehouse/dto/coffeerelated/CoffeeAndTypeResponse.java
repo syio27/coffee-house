@@ -1,4 +1,4 @@
-package pja.mas.coffeehouse.dto;
+package pja.mas.coffeehouse.dto.coffeerelated;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,8 +12,9 @@ import pja.mas.coffeehouse.model.enums.SugarType;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CoffeeResponse {
+public class CoffeeAndTypeResponse {
     private Long id;
+    private String name;
     private Double price;
     private MilkType milkType;
     private SugarType sugarType;

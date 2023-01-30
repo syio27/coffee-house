@@ -1,4 +1,4 @@
-package pja.mas.coffeehouse.dto;
+package pja.mas.coffeehouse.dto.coffeerelated;
 
 import pja.mas.coffeehouse.model.enums.MilkType;
 import pja.mas.coffeehouse.model.enums.Size;

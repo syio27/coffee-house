@@ -1,6 +1,9 @@
 package pja.mas.coffeehouse.service;
 
-import pja.mas.coffeehouse.dto.*;
+import pja.mas.coffeehouse.dto.coffeerelated.CoffeeAndTypeResponse;
+import pja.mas.coffeehouse.dto.coffeerelated.CoffeeRequest;
+import pja.mas.coffeehouse.dto.coffeerelated.CoffeeResponse;
+import pja.mas.coffeehouse.dto.coffeerelated.CoffeeUpdateRequest;
 
 import java.util.List;
 

@@ -6,10 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pja.mas.coffeehouse.dto.CoffeeAndTypeResponse;
-import pja.mas.coffeehouse.dto.CoffeeRequest;
-import pja.mas.coffeehouse.dto.CoffeeResponse;
-import pja.mas.coffeehouse.dto.CoffeeUpdateRequest;
+import pja.mas.coffeehouse.dto.coffeerelated.CoffeeAndTypeResponse;
+import pja.mas.coffeehouse.dto.coffeerelated.CoffeeRequest;
+import pja.mas.coffeehouse.dto.coffeerelated.CoffeeResponse;
+import pja.mas.coffeehouse.dto.coffeerelated.CoffeeUpdateRequest;
 import pja.mas.coffeehouse.service.CoffeeService;
 import java.util.List;
 

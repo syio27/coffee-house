@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pja.mas.coffeehouse.dto.CustomerRequest;
-import pja.mas.coffeehouse.dto.CustomerResponse;
+import pja.mas.coffeehouse.dto.customerrelated.CustomerRequest;
+import pja.mas.coffeehouse.dto.customerrelated.CustomerResponse;
 import pja.mas.coffeehouse.service.CustomerService;
 
 import java.util.List;
