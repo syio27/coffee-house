@@ -10,5 +10,5 @@ public interface CoffeeService {
     public void save(CoffeeRequest coffeeRequest);
     public void delete(Long id);
     public void update(Long id, CoffeeUpdateRequest coffeeUpdateRequest);
-
+    public List<CoffeeAndTypeResponse> getCoffeesWithTypes();
 }

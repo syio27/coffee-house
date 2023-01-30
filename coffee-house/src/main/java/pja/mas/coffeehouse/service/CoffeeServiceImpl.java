@@ -3,6 +3,7 @@ package pja.mas.coffeehouse.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import pja.mas.coffeehouse.dto.CoffeeAndTypeResponse;
 import pja.mas.coffeehouse.dto.CoffeeRequest;
 import pja.mas.coffeehouse.dto.CoffeeResponse;
 import pja.mas.coffeehouse.dto.CoffeeUpdateRequest;
@@ -69,6 +70,13 @@ public class CoffeeServiceImpl implements CoffeeService{
         coffeeRepository.save(coffee);
     }
 
+    @Override
+    public List<CoffeeAndTypeResponse> getCoffeesWithTypes() {
+        List<Coffee> coffees = coffeeRepository.findCoffeeAndType();
+        log.info("Customers are retrieved {} ", coffees);
+        return coffees.stream().map(this::mapToCoffeeAndTypeResponse).toList();
+    }
+
     private Coffee findById(Long id){
         return coffeeRepository
                 .findById(id)
@@ -78,6 +86,17 @@ public class CoffeeServiceImpl implements CoffeeService{
     private CoffeeResponse mapToCoffeeResponse(Coffee coffee) {
         return CoffeeResponse.builder()
                 .id(coffee.getId())
+                .price(coffee.getPrice())
+                .milkType(coffee.getMilkType())
+                .sugarType(coffee.getSugarType())
+                .size(coffee.getSize())
+                .build();
+    }
+
+    private CoffeeAndTypeResponse mapToCoffeeAndTypeResponse(Coffee coffee) {
+        return CoffeeAndTypeResponse.builder()
+                .id(coffee.getId())
+                .name(coffee.getCoffeeType().getName())
                 .price(coffee.getPrice())
                 .milkType(coffee.getMilkType())
                 .sugarType(coffee.getSugarType())

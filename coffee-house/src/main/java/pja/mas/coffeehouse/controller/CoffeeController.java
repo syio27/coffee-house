@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pja.mas.coffeehouse.dto.CoffeeAndTypeResponse;
 import pja.mas.coffeehouse.dto.CoffeeRequest;
 import pja.mas.coffeehouse.dto.CoffeeResponse;
 import pja.mas.coffeehouse.dto.CoffeeUpdateRequest;
@@ -51,6 +52,12 @@ public class CoffeeController {
         coffeeService.update(id, coffeeUpdateRequest);
         log.info("Coffee {}'s details is updated {}", id, coffeeUpdateRequest);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/types")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CoffeeAndTypeResponse> getListOfCoffeesWithTypes(){
+        return coffeeService.getCoffeesWithTypes();
     }
 
     @DeleteMapping("/{id}")
