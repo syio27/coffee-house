@@ -3,10 +3,7 @@ package pja.mas.coffeehouse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import pja.mas.coffeehouse.model.products.Beverage;
-import pja.mas.coffeehouse.model.products.BeverageType;
-import pja.mas.coffeehouse.model.products.Coffee;
-import pja.mas.coffeehouse.model.products.CoffeeType;
+import pja.mas.coffeehouse.model.products.*;
 import pja.mas.coffeehouse.model.users.Customer;
 import pja.mas.coffeehouse.model.enums.*;
 import pja.mas.coffeehouse.repository.*;
@@ -23,6 +20,8 @@ public class DataLoader implements CommandLineRunner {
     private final BeverageRepository beverageRepository;
     private final CoffeeTypeRepository coffeeTypeRepository;
     private final BeverageTypeRepository beverageTypeRepository;
+    private final ToppingTypeRepository toppingTypeRepository;
+    private final ToppingRepository toppingRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -69,6 +68,25 @@ public class DataLoader implements CommandLineRunner {
                 .build();
 
         customerRepository.saveAll(List.of(customer1, customer2, customer3, customer4));
+
+        //ToppingType in-memory data load to db
+        ToppingType toppingType1 = ToppingType.builder()
+                .name("Honey")
+                .build();
+        ToppingType toppingType2 = ToppingType.builder()
+                .name("Cocoa Powder")
+                .build();
+        ToppingType toppingType3 = ToppingType.builder()
+                .name("Chocolate Chips")
+                .build();
+        ToppingType toppingType4 = ToppingType.builder()
+                .name("Whipped Cream")
+                .build();
+        ToppingType toppingType5 = ToppingType.builder()
+                .name("caramel")
+                .build();
+
+        toppingTypeRepository.saveAll(List.of(toppingType1, toppingType2, toppingType3, toppingType4, toppingType5));
 
         //CoffeeType in-memory data load to db
         CoffeeType coffeeType1 = CoffeeType.builder()
@@ -132,6 +150,35 @@ public class DataLoader implements CommandLineRunner {
                 .build();
 
         coffeeRepository.saveAll(List.of(coffee1, coffee2, coffee3, coffee4, coffee5));
+
+        //ToppingType in-memory data load to db
+        Topping topping1 = Topping.builder()
+                .price(0.99D)
+                .toppingType(toppingType1)
+                .coffee(coffee1)
+                .build();
+        Topping topping2 = Topping.builder()
+                .price(1.99D)
+                .toppingType(toppingType2)
+                .coffee(coffee2)
+                .build();
+        Topping topping3 = Topping.builder()
+                .price(0.99D)
+                .toppingType(toppingType3)
+                .coffee(coffee2)
+                .build();
+        Topping topping4 = Topping.builder()
+                .price(0.99D)
+                .toppingType(toppingType4)
+                .coffee(coffee3)
+                .build();
+        Topping topping5 = Topping.builder()
+                .price(0.99D)
+                .toppingType(toppingType5)
+                .coffee(coffee4)
+                .build();
+
+        toppingRepository.saveAll(List.of(topping1, topping2, topping3, topping4, topping5));
 
         //CoffeeType in-memory data load to db
         BeverageType beverageType1 = BeverageType.builder()

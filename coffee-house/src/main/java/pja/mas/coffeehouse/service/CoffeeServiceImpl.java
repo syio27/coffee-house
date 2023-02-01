@@ -72,7 +72,7 @@ public class CoffeeServiceImpl implements CoffeeService{
 
     @Override
     public List<CoffeeAndTypeResponse> getCoffeesWithTypes() {
-        List<Coffee> coffees = coffeeRepository.findCoffeeAndType();
+        List<Coffee> coffees = coffeeRepository.findCoffeesWithTypes();
         log.info("Coffees with types are retrieved {} ", coffees);
         return coffees.stream().map(this::mapToCoffeeAndTypeResponse).toList();
     }

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface CoffeeRepository extends JpaRepository<Coffee, Long> {
     @Query("SELECT c FROM Coffee c LEFT JOIN c.coffeeType ct WHERE ct.id = c.coffeeType.id")
-    List<Coffee> findCoffeeAndType();
+    List<Coffee> findCoffeesWithTypes();
 }

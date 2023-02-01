@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import pja.mas.coffeehouse.model.enums.MilkType;
 import pja.mas.coffeehouse.model.enums.SugarType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+
+import javax.persistence.*;
 import java.io.Serial;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -26,4 +26,6 @@ public class Coffee extends Product{
     @OneToOne
     @JoinColumn(name = "coffee_type_id")
     private CoffeeType coffeeType;
+    @OneToMany(mappedBy = "coffee", cascade = CascadeType.ALL)
+    private List<Topping> toppings;
 }
