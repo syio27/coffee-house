@@ -14,11 +14,12 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CoffeeAndTypeResponse {
+public class CoffeeAndTypeToppingsResponse {
     private Long id;
     private String name;
     private Double price;
     private MilkType milkType;
     private SugarType sugarType;
     private Size size;
+    private List<ToppingResponse> toppingResponseList;
 }

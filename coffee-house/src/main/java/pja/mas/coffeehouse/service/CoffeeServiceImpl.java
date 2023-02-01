@@ -3,15 +3,14 @@ package pja.mas.coffeehouse.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import pja.mas.coffeehouse.dto.coffeerelated.CoffeeAndTypeResponse;
-import pja.mas.coffeehouse.dto.coffeerelated.CoffeeRequest;
-import pja.mas.coffeehouse.dto.coffeerelated.CoffeeResponse;
-import pja.mas.coffeehouse.dto.coffeerelated.CoffeeUpdateRequest;
+import pja.mas.coffeehouse.dto.coffeerelated.*;
 import pja.mas.coffeehouse.exception.ProductNotFoundException;
 import pja.mas.coffeehouse.model.enums.MilkType;
 import pja.mas.coffeehouse.model.enums.SugarType;
 import pja.mas.coffeehouse.model.products.Coffee;
 import pja.mas.coffeehouse.repository.CoffeeRepository;
+import pja.mas.coffeehouse.repository.ToppingRepository;
+
 import java.util.List;
 
 @Service
@@ -20,6 +19,7 @@ import java.util.List;
 public class CoffeeServiceImpl implements CoffeeService{
 
     private final CoffeeRepository coffeeRepository;
+    private final ToppingService toppingService;
 
     @Override
     public List<CoffeeResponse> getCoffees() {
@@ -77,10 +77,38 @@ public class CoffeeServiceImpl implements CoffeeService{
         return coffees.stream().map(this::mapToCoffeeAndTypeResponse).toList();
     }
 
+    @Override
+    public CoffeeAndTypeResponse getCoffeeByIdWithType (Long id) {
+        Coffee coffee = coffeeRepository.findCoffeeByIdWithType(id);
+        CoffeeAndTypeResponse coffeeAndTypeResponse = mapToCoffeeAndTypeResponse(coffee);
+        log.info("Coffee {} with type retrieved {}", id, coffeeAndTypeResponse);
+        return coffeeAndTypeResponse;
+    }
+
+    @Override
+    public CoffeeAndTypeToppingsResponse getCoffeeFullDetails(Long id) {
+        Coffee coffee = coffeeRepository.findCoffeeByIdWithType(id);
+        log.info("Passed Coffee id {}, received coffee id {}", id, coffee.getId());
+        return mapToCoffeeAndTypeToppingsResponse(coffee);
+    }
+
+
     private Coffee findById(Long id){
         return coffeeRepository
                 .findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
+    }
+
+    private CoffeeAndTypeToppingsResponse mapToCoffeeAndTypeToppingsResponse(Coffee coffee){
+        return CoffeeAndTypeToppingsResponse.builder()
+                .id(coffee.getId())
+                .name(coffee.getCoffeeType().getName())
+                .price(coffee.getPrice())
+                .milkType(coffee.getMilkType())
+                .sugarType(coffee.getSugarType())
+                .size(coffee.getSize())
+                .toppingResponseList(toppingService.getToppingsByCoffeeId(coffee.getId()))
+                .build();
     }
 
     private CoffeeResponse mapToCoffeeResponse(Coffee coffee) {

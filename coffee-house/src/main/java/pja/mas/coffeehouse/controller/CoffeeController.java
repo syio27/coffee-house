@@ -6,10 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pja.mas.coffeehouse.dto.coffeerelated.CoffeeAndTypeResponse;
-import pja.mas.coffeehouse.dto.coffeerelated.CoffeeRequest;
-import pja.mas.coffeehouse.dto.coffeerelated.CoffeeResponse;
-import pja.mas.coffeehouse.dto.coffeerelated.CoffeeUpdateRequest;
+import pja.mas.coffeehouse.dto.coffeerelated.*;
 import pja.mas.coffeehouse.service.CoffeeService;
 import java.util.List;
 
@@ -58,6 +55,18 @@ public class CoffeeController {
     @ResponseStatus(HttpStatus.OK)
     public List<CoffeeAndTypeResponse> getListOfCoffeesWithTypes(){
         return coffeeService.getCoffeesWithTypes();
+    }
+
+    @GetMapping("/types/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public CoffeeAndTypeResponse getCoffeeWithType(@PathVariable Long id){
+        return coffeeService.getCoffeeByIdWithType(id);
+    }
+
+    @GetMapping("/details/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public CoffeeAndTypeToppingsResponse getCoffeeFullDetails(@PathVariable Long id){
+        return coffeeService.getCoffeeFullDetails(id);
     }
 
     @DeleteMapping("/{id}")

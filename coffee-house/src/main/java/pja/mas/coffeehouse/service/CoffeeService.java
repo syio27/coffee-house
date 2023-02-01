@@ -1,9 +1,6 @@
 package pja.mas.coffeehouse.service;
 
-import pja.mas.coffeehouse.dto.coffeerelated.CoffeeAndTypeResponse;
-import pja.mas.coffeehouse.dto.coffeerelated.CoffeeRequest;
-import pja.mas.coffeehouse.dto.coffeerelated.CoffeeResponse;
-import pja.mas.coffeehouse.dto.coffeerelated.CoffeeUpdateRequest;
+import pja.mas.coffeehouse.dto.coffeerelated.*;
 
 import java.util.List;
 
@@ -14,4 +11,6 @@ public interface CoffeeService {
     public void delete(Long id);
     public void update(Long id, CoffeeUpdateRequest coffeeUpdateRequest);
     public List<CoffeeAndTypeResponse> getCoffeesWithTypes();
+    public CoffeeAndTypeResponse getCoffeeByIdWithType(Long id);
+    public CoffeeAndTypeToppingsResponse getCoffeeFullDetails(Long id);
 }

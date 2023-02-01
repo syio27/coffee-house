@@ -21,6 +21,7 @@ public class Topping implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+    @Column(name = "topping_price")
     private Double price;
 
     @OneToOne
