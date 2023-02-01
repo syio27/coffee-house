@@ -18,7 +18,5 @@ public class CoffeeAndTypeResponse {
     private Long id;
     private String name;
     private Double price;
-    private MilkType milkType;
-    private SugarType sugarType;
     private Size size;
 }

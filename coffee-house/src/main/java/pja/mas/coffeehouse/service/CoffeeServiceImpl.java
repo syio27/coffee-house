@@ -126,8 +126,6 @@ public class CoffeeServiceImpl implements CoffeeService{
                 .id(coffee.getId())
                 .name(coffee.getCoffeeType().getName())
                 .price(coffee.getPrice())
-                .milkType(coffee.getMilkType())
-                .sugarType(coffee.getSugarType())
                 .size(coffee.getSize())
                 .build();
     }
